@@ -6,7 +6,6 @@ let formData = {
   message: '',
 };
 
-// Відновлення даних з локального сховища
 const savedData = localStorage.getItem(STORAGE_KEY);
 if (savedData) {
   formData = JSON.parse(savedData);
@@ -14,13 +13,11 @@ if (savedData) {
   form.elements.message.value = formData.message || '';
 }
 
-// Відстеження змін у формі
 form.addEventListener('input', e => {
   formData[e.target.name] = e.target.value.trim();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
-// Сабміт форми
 form.addEventListener('submit', e => {
   e.preventDefault();
 
