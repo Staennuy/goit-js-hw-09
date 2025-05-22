@@ -8,9 +8,13 @@ let formData = {
 
 const savedData = localStorage.getItem(STORAGE_KEY);
 if (savedData) {
-  formData = JSON.parse(savedData);
-  form.elements.email.value = formData.email || '';
-  form.elements.message.value = formData.message || '';
+  try {
+    formData = JSON.parse(savedData);
+    form.elements.email.value = formData.email || '';
+    form.elements.message.value = formData.message || '';
+  } catch (error) {
+    console.error('Invalid localStorage data', error);
+  }
 }
 
 form.addEventListener('input', e => {
